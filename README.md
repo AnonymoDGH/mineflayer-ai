@@ -1,4 +1,4 @@
-<h1 align="center">mineflayer-plugin-template</h1>
+<h1 align="center">mineflayer-ai</h1>
 <p align="center"><i>A simple template repository for developing Mineflayer plugins through Typescript.</i></p>
 
 <p align="center">
