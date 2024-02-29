@@ -1,5 +1,5 @@
 <h1 align="center">mineflayer-ai</h1>
-<p align="center"><i>A simple template repository for developing Mineflayer plugins through Typescript.</i></p>
+<p align="center"><i>A chat with artificial intelligence, defines the prompt and speaks without problems</i></p>
 
 <p align="center">
   <img src="https://github.com/TheDudeFromCI/mineflayer-plugin-template/workflows/Build/badge.svg" />
@@ -14,9 +14,9 @@
 
 ### Getting Started
 
-This plugin is built using Node and can be installed using:
+Install the plugin in Node with:
 ```bash
-npm install --save mineflayer-plugin-template
+npm install --save mineflayer-ai
 ```
 
 This plugin has a relies on [random-plugin]() for a-b-c. That plugin should be loaded first.
@@ -30,15 +30,18 @@ The brief description goes here.
 const mineflayer = require("mineflayer");
 const bot = mineflayer.createBot({ username: "Player" });
 
+// bot.ai.prompt('you are a cat girl')
+bot.ai.prompt('you are an npc named Johnny, speak in a friendly and informative')
+
 // Do stuff
-bot.doStuff()
+bot.ai()
 ```
 
 ### Documentation
 
-[API](https://github.com/TheDudeFromCI/mineflayer-plugin-template/blob/master/docs/api.md)
+[API](https://github.com/AnonymoDGH/mineflayer-ai/blob/master/docs/api.md)
 
-[Examples](https://github.com/TheDudeFromCI/mineflayer-plugin-template/tree/master/examples)
+[Examples](https://github.com/AnonymoDGH/mineflayer-ai/tree/master/examples)
 
 ### License
 
