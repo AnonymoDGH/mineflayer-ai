@@ -1,53 +1,66 @@
 import { Bot } from "mineflayer";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
 /**
- * The main pvp manager plugin class.
+ * The main PvP manager plugin class.
  */
-export class ai
-{
+export class Ai {  // Class name should use PascalCase
+  /**
+   * The current target. This value should never be assigned to from outside the plugin.
+   */
+  private prompt?: string;  // Use private to prevent external modification
 
-    /**
-     * The current target. This value should never be assigned to from outside the plugin.
-     */
-    prompt?: string;
+  /**
+   * Your GoogleGenerativeAI instance, initialized asynchronously.
+   * Note: Accessing your API key directly in code is not recommended.
+   * Refer to Google's best practices for secure key storage and retrieval.
+   */
+  private ai?: GoogleGenerativeAI;
 
-    /**
-     * The movements object to pass to pathfinder when creating the follow entity goal. Assign
-     * to null in order to avoid passing any movement config to pathfinder. (If you plan on using
-     * your own)
-     */
-    ai?: GoogleGenerativeAI;
+  /**
+   * Creates a new instance of the PvP plugin.
+   *
+   * @param bot - The bot this plugin is being attached to.
+   */
+  constructor(bot: Bot) {
+    // Initialize GoogleGenerativeAI asynchronously outside of the constructor
+    (async () => {
+      try {
+        const apiKey = await getApiKey(); // Replace with your secure API key retrieval logic
+        this.ai = new GoogleGenerativeAI(apiKey);
+      } catch (error) {
+        console.error("Error initializing GoogleGenerativeAI:", error);
+      }
+    })();
+  }
 
-    /**
+  /**
+   * Function to handle the AI interaction.
+   *
+   * @param prompt - The prompt to generate text from.
+   */
+  public async prompt(bot: Bot, prompt: string): Promise<void> {
+    this.prompt = prompt;
 
-    /**
-     * Creates a new instance of the PVP plugin.
-     *
-     * @param bot - The bot this plugin is being attached to.
-     */
-
-    /*
-     * Function prompt
-     */
-    prompt(bot: Bot, prompt: string): void {
-        const prompt = text
-        this.prompt = prompt;
+    if (!this.ai) {
+      console.error("GoogleGenerativeAI instance not yet initialized.");
+      return;
     }
 
-    ai(): void {
-
-// Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-
-async function run() {
-  // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
-  bot.chat(text);
+    try {
+      // Generate content and handle potential errors
+      const model = this.ai.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      bot.chat(text);
+    } catch (error) {
+      console.error("Error generating text:", error);
+    }
+  }
 }
 
-run();
-    }
+// Replace this with your secure API key retrieval logic or environment variable access
+async function getApiKey(): Promise<string> {
+  // Implement your secure key retrieval mechanism (e.g., from environment variables)
+  return "YOUR_API_KEY"; // Placeholder, replace with actual retrieval
+}
