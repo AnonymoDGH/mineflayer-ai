@@ -7,4 +7,7 @@ const bot = mineflayer.createBot({
   auth: 'microsoft'
 })
 
-bot.loadPlugin(ai, { prompt: 'you are an npc, respond in a friendly way' })
+bot.loadPlugin(ai, { 
+  prompt: 'you are an npc, respond in a friendly way', 
+  api: 'KGHlslHdfiagJdk'
+})
