@@ -2,7 +2,9 @@ const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require("@googl
 
 const mineflayer = require('mineflayer')
 
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const api = options.api 
+
+const genAI = new GoogleGenerativeAI(api);
 
 const safetySettings = [
   {
