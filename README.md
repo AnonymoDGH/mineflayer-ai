@@ -2,12 +2,12 @@
 <p align="center"><i>A chat with artificial intelligence, defines the prompt and speaks without problems</i></p>
 
 <p align="center">
-  <img src="https://github.com/TheDudeFromCI/mineflayer-plugin-template/workflows/Build/badge.svg" />
-  <img src="https://img.shields.io/npm/v/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/repo-size/TheDudeFromCI/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/npm/dm/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/contributors/TheDudeFromCI/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/license/TheDudeFromCI/mineflayer-plugin-template" />
+  <img src="https://github.com/AnonymoDGH/mineflayer-ai/workflows/Build/badge.svg" />
+  <img src="https://img.shields.io/npm/v/mineflayer-ai" />
+  <img src="https://img.shields.io/github/repo-size/AnonymoDGH/mineflayer-ai" />
+  <img src="https://img.shields.io/npm/dm/mineflayer-ai" />
+  <img src="https://img.shields.io/github/contributors/AnonymoDGH/mineflayer-ai" />
+  <img src="https://img.shields.io/github/license/AnonymoDGH/mineflayer-ai" />
 </p>
 
 ---
@@ -16,7 +16,7 @@
 
 Install the plugin in Node with:
 ```bash
-npm install --save mineflayer-ai
+npm install mineflayer-ai
 ```
 
 This plugin has a relies on [random-plugin]() for a-b-c. That plugin should be loaded first.
@@ -27,14 +27,22 @@ The brief description goes here.
 
 ```js
 // Create your bot
-const mineflayer = require("mineflayer");
-const bot = mineflayer.createBot({ username: "Player" });
+const mineflayer = require('mineflayer')
+const ai = require('mineflayer-ai')
 
-// bot.ai.prompt('you are a cat girl')
-bot.ai.prompt('you are an npc named Johnny, speak in a friendly and informative')
+const bot = mineflayer.createBot({
+  host: 'localhost',
+  username: 'Bot',
+  auth: 'microsoft'
+})
 
-// Do stuff
-bot.ai()
+bot.loadPlugin(ai, { 
+  // Define your prompt
+  prompt: 'you are an npc, respond in a friendly way', 
+  // Get your api here (https://aistudio.google.com/app/apikey)
+  api: 'YOU_API'
+})
+
 ```
 
 ### Documentation
@@ -45,10 +53,8 @@ bot.ai()
 
 ### License
 
-This project uses the [MIT](https://github.com/TheDudeFromCI/mineflayer-plugin-template/blob/master/LICENSE) license.
+This project uses the [MIT](https://github.com/AnonymoDGH/mineflayer-ai/blob/master/LICENSE) license.
 
 ### Contributions
 
-This project is accepting PRs and Issues. See something you think can be improved? Go for it! Any and all help is highly appreciated!
-
-For larger changes, it is recommended to discuss these changes in the issues tab before writing any code. It's also preferred to make many smaller PRs than one large one, where applicable.
+I do not know?

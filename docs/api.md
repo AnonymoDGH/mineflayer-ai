@@ -1,8 +1,8 @@
-# API <!-- omit in toc -->
+# API 
 
-Welcome to the *mineflayer-plugin-template* API documentation page.
+Welcome to the *mineflayer-ai* API documentation
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents 
 
 - [1. Summary](#1-summary)
 
