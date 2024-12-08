@@ -1,60 +1,97 @@
-<h1 align="center">mineflayer-ai</h1>
-<p align="center"><i>A chat with artificial intelligence, defines the prompt and speaks without problems</i></p>
+# mineflayer-ai
 
-<p align="center">
-  <img src="https://github.com/AnonymoDGH/mineflayer-ai/workflows/Build/badge.svg" />
-  <img src="https://img.shields.io/npm/v/mineflayer-ai" />
-  <img src="https://img.shields.io/github/repo-size/AnonymoDGH/mineflayer-ai" />
-  <img src="https://img.shields.io/npm/dm/mineflayer-ai" />
-  <img src="https://img.shields.io/github/contributors/AnonymoDGH/mineflayer-ai" />
-  <img src="https://img.shields.io/github/license/AnonymoDGH/mineflayer-ai" />
-</p>
+## Overview
 
----
+The `mineflayer-ai` plugin provides AI-powered chat capabilities for Minecraft bots using the `mineflayer` library. It leverages the Google Generative AI API to generate responses to chat messages.
 
-### Getting Started
+## Installation
 
-Install the plugin in Node with:
-```bash
+To install the `mineflayer-ai` plugin, you can use npm:
+
+```sh
 npm install mineflayer-ai
 ```
 
-This plugin has a relies on [random-plugin]() for a-b-c. That plugin should be loaded first.
+## Usage
 
-### Simple Bot
+### Importing the Plugin
 
-The brief description goes here.
+First, import the `mineflayer` library and the `mineflayer-ai` plugin:
 
-```js
-// Create your bot
-const mineflayer = require('mineflayer')
-const ai = require('mineflayer-ai')
+```javascript
+const mineflayer = require('mineflayer');
+const ai = require('mineflayer-ai');
+```
+
+### Creating a Bot
+
+Create a bot instance using `mineflayer`:
+
+```javascript
+const bot = mineflayer.createBot({
+  host: 'localhost',
+  username: 'Bot',
+  auth: 'microsoft'
+});
+```
+
+### Loading the Plugin
+
+Load the `mineflayer-ai` plugin with the desired configuration:
+
+```javascript
+bot.loadPlugin(ai, { 
+  prompt: 'you are an npc, respond in a friendly way', 
+  api: 'YOUR_API_KEY'
+});
+```
+
+### Configuration Options
+
+- `prompt` (string): The initial prompt to guide the AI's responses.
+- `api` (string): The API key for the Google Generative AI service.
+
+### Events
+
+- `chat`: The bot will listen for chat messages and respond using the AI.
+
+## Example
+
+Here is a complete example of how to use the `mineflayer-ai` plugin:
+
+```javascript
+const mineflayer = require('mineflayer');
+const ai = require('mineflayer-ai');
 
 const bot = mineflayer.createBot({
   host: 'localhost',
   username: 'Bot',
   auth: 'microsoft'
-})
+});
 
 bot.loadPlugin(ai, { 
-  // Define your prompt
   prompt: 'you are an npc, respond in a friendly way', 
-  // Get your api here (https://aistudio.google.com/app/apikey)
-  api: 'YOU_API'
-})
+  api: 'YOUR_API_KEY'
+});
 
+bot.on('chat', (username, message) => {
+  if (username === bot.username) return;
+  console.log(`Received message from ${username}: ${message}`);
+});
+
+bot.on('login', () => {
+  console.log("Bot has logged in and is ready to chat!");
+});
 ```
 
-### Documentation
+## API Documentation
 
-[API](https://github.com/AnonymoDGH/mineflayer-ai/blob/master/docs/api.md)
+For detailed API documentation, see the [API Documentation](docs/api.md).
 
-[Examples](https://github.com/AnonymoDGH/mineflayer-ai/tree/master/examples)
+## Contributing
 
-### License
+Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
 
-This project uses the [MIT](https://github.com/AnonymoDGH/mineflayer-ai/blob/master/LICENSE) license.
+## License
 
-### Contributions
-
-I do not know?
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
